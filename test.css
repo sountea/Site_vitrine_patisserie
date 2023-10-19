@@ -1,0 +1,470 @@
+/* --- Default Overrides - Personal Preference --- */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*,
+*:before,
+*:after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+form > * {
+	outline: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+ul, li {
+	list-style: none;
+}
+
+
+/* --- Clearfix for floated Elements --- */
+
+/* I never ended up using this for the nav-bar */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+
+/* --- Typography --- */
+
+
+
+
+p {
+	line-height: 1.4;
+}
+
+.small-caps {
+	text-transform: uppercase;
+	letter-spacing: 0.15rem;
+	font-size: 0.7rem;
+}
+
+.bolder {
+	font-weight: bolder;
+}
+
+.lighter {
+	font-weight: lighter;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.site-logo {
+	font-size: 2rem;
+	font-weight: bolder;
+	text-transform: uppercase;
+	letter-spacing: 0.8rem;
+	margin: 0 1rem;
+}
+
+/* --- Elements --- */
+
+
+.container {
+	max-width: 1200px; /* max 'width' of contents of site */
+	margin: 0 auto; /* centered horizontally  */
+}
+
+.nav-bar {
+	position: absolute; /* lock to top */
+	top: 0;
+	width: 100%; /* full width */
+	background-color: white;
+	height: 60px;
+}
+
+.nav-bar .container {
+	display: flex;
+	align-items: center; /* vertically center */
+	height: 100%;
+}
+
+/* Hide checkbox that controls Mobile Nav Button*/
+#drop-down-cbox {
+	display: none;
+}
+
+/* Mobile Nav Button */
+#drop-down-cbox + label {
+	position: relative;
+	display: none;
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	background-color: transparent;
+	transition: all 10ms ease-in-out;
+}
+
+/* Mobile Nav Button Bars */
+#drop-down-cbox + label span {
+	position: absolute;
+	display: block;
+	background-color: #666;
+	width: 34px;
+	height: 4px;
+	border-radius: 2px;
+	left: 50%;
+	transform: translate(-50%, -50%); /* centering trick */
+	transition: all 300ms ease-in-out;
+}
+
+/* Mobile Nav Button Bars Invididually */
+#drop-down-cbox + label span:nth-child(1) {
+	top: 35%; /* evenly spaced */
+}
+#drop-down-cbox + label span:nth-child(2) {
+	top: 50%; /* evenly spaced */
+}
+#drop-down-cbox + label span:nth-child(3) {
+	top: 65%; /* evenly spaced */
+}
+
+/* Mobile Nav Button Styling for Checked */
+#drop-down-cbox:checked + label {
+	background-color: #666;
+}
+
+#drop-down-cbox:checked + label span {
+	background-color: white;
+}
+
+/* Transform the bars into an 'X' */
+#drop-down-cbox:checked + label span:nth-child(1) {
+	top: 50%;
+	transform: translate(-50%, -50%) rotate(45deg); /* center, then rotate */
+}
+#drop-down-cbox:checked + label span:nth-child(2) {
+	left: -150%; /* move center bar out of the picture */
+}
+#drop-down-cbox:checked + label span:nth-child(3) {
+	top: 50%;
+	transform: translate(-50%, -50%) rotate(-45deg); /* center, then rotate */
+}
+
+/* Main Nav Desktop */
+.main-nav {
+	flex-grow: 1; /* fill remaining space */
+	display: flex;
+	justify-content: space-around; /* evenly space items */
+	align-items: center; /* center vertically */
+}
+
+.main-nav li {
+	display: block;
+	width: 100%;
+	height: 60px;
+	line-height: 60px; /* vertically center text, matches height */
+	text-align: center;
+}
+
+.main-nav li a,
+.main-nav li span {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.main-nav li a:hover,
+.main-nav li span:hover {
+	border-bottom: 4px solid #666;
+}
+
+.main-nav li > ul {
+	max-height: 0px; /* max-height instead of height, height can't transition to auto */
+	transition: all 500ms ease-in-out;
+	overflow: hidden; /* make it so nav doesn't show beyond the 0px max-height */
+}
+
+.main-nav li:hover > ul {
+	max-height: 180px; /* height x how many links */
+	height: auto;
+}
+
+.main-nav li > ul li a,
+.main-nav li > ul li span {
+	background-color: white;
+}
+
+.main-nav li > ul li a:hover,
+.main-nav li > ul li span:hover {
+	background-color: #666;
+	color: white;
+	border-bottom: none;
+}
+
+/* Tablet and Mobile View */
+@media (max-width: 768px) {
+	.site-logo {
+		font-size: 1.5rem;
+		flex-grow: 1;
+		text-align: center;
+	}
+	
+	#drop-down-cbox + label {
+		display: block; /* unhide the mobile nav button */
+	}
+	
+	.main-nav {
+		max-height: 0px; /* same vertical grow transition trick as above */
+		height: calc(100vh - 60px); /* take full vertical viewport height, -60px for nav-bar */
+		overflow: hidden;
+		position: absolute;
+		top: 60px;
+		line-height: auto;
+		left: 0;
+		width: 100%;
+		flex-direction: column;
+		background-color: white;
+		transition: all 500ms ease-in-out;
+	}
+	
+	#drop-down-cbox:checked ~ .main-nav {
+		max-height: calc(100vh - 60px);
+		transition: all 500ms ease-in-out;
+	}
+
+	.main-nav li span {
+		position: relative;
+	}
+	
+	/* design and position downward arrow */
+	.main-nav li span:after {
+		content: "";
+		width: 6px;
+		height: 6px;
+		position: absolute;
+		top: 50%;
+		margin-top: -2px;
+		margin-left: 8px;
+		transform: translateY(-50%) rotate(-45deg);
+		border-left: 2px solid #666;
+		border-bottom: 2px solid #666;
+	}
+	
+	.main-nav li a:hover,
+	.main-nav li span:hover {
+		background-color: #666;
+		color: white;
+		border-bottom: none;
+	}
+	
+	.main-nav li > ul li {
+		position: relative;
+	}
+	
+	.main-nav li > ul li a,
+	.main-nav li > ul li span {
+		background-color: #eee;
+	}
+	
+}
+
+
+
+
+
+
+
+.margin{
+
+margin-top: -35px;
+
+}
+
+.margin2{
+
+	margin-top: 200px;
+	
+	}
+	
+
+
+.box{
+
+	height:350px;
+	width:300px;
+
+}
+
+
+
+
+.box2{
+
+	height:500px;
+	width:300px;
+
+}
+
+.image{
+
+	background-position: 5px -50px ;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image:from-image;
+	box-shadow: 12px 12px 2px 1px Black;
+}
+
+.image2{
+
+	background-position: 5px 0px ;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image:from-image;
+	box-shadow: 12px 12px 2px 1px Black;
+}
+
+
+
+
+.two-box :hover{
+
+	opacity: 0.75;
+
+
+}
+
+.box2 :hover{
+
+	opacity: 0.75;
+
+
+}
+.bouton:hover{
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+
+.police{
+
+	font-family: 'Open Sans', sans-serif;
+
+
+}
+.recherche input[type=text] {
+	float: right;
+	padding: 6px;
+	border: none;
+	margin-top: 8px;
+	margin-right: 16px;
+	font-size: 17px;
+  }
+  @media screen and (max-width: 600px) {
+	 .recherche input[type=text] {
+	  float: none;
+	  display: block;
+	  text-align: left;
+	  width: 100%;
+	  margin: 0;
+	  padding: 14px;
+	}
+	.recherche input[type=text] {
+	  border: 1px solid #ccc;
+	}
+  }
+
+.footer-dark {
+	padding:50px 0;
+	color:#f0f9ff;
+	background-color:#282d32;
+  }
+  
+  .footer-dark h3 {
+	margin-top:0;
+	margin-bottom:12px;
+	font-weight:bold;
+	font-size:16px;
+  }
+  
+  .footer-dark ul {
+	padding:0;
+	list-style:none;
+	line-height:1.6;
+	font-size:14px;
+	margin-bottom:0;
+  }
+  
+  .footer-dark ul a {
+	color:inherit;
+	text-decoration:none;
+	opacity:0.6;
+  }
+  
+  .footer-dark ul a:hover {
+	opacity:0.8;
+  }
+  
+  @media (max-width:767px) {
+	.footer-dark .item:not(.social) {
+	  text-align:center;
+	  padding-bottom:20px;
+	}
+  }
+  
+  .footer-dark .item.text {
+	margin-bottom:36px;
+  }
+  
+  @media (max-width:767px) {
+	.footer-dark .item.text {
+	  margin-bottom:0;
+	}
+  }
+  
+  .footer-dark .item.text p {
+	opacity:0.6;
+	margin-bottom:0;
+  }
+  
+  .footer-dark .item.social {
+	text-align:center;
+  }
+  
+  @media (max-width:991px) {
+	.footer-dark .item.social {
+	  text-align:center;
+	  margin-top:20px;
+	}
+  }
+  
+  .footer-dark .item.social > a {
+	font-size:20px;
+	width:36px;
+	height:36px;
+	line-height:36px;
+	display:inline-block;
+	text-align:center;
+	border-radius:50%;
+	box-shadow:0 0 0 1px rgba(255,255,255,0.4);
+	margin:0 8px;
+	color:#fff;
+	opacity:0.75;
+  }
+  
+  .footer-dark .item.social > a:hover {
+	opacity:0.9;
+  }
+  
+  .footer-dark .copyright {
+	text-align:center;
+	padding-top:24px;
+	opacity:0.3;
+	font-size:13px;
+	margin-bottom:0;
+  }
+  

@@ -1,0 +1,62 @@
+.Box{
+
+	height:120px;
+	width:300px;
+
+}
+.coffre{
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.Boximage:hover{
+
+	opacity: 0.75;
+
+
+}
+
+.Boximage{
+
+	height:350px;
+	width:300px;
+    margin-top: 10px;
+    
+	background-position: 5px -50px ;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image:from-image;
+	box-shadow: 12px 12px 2px 1px Black;
+
+}
+
+
+
+.container{
+    padding:10px;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.nom{
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 15px;
+}
+.police{
+
+	font-family: 'Open Sans', sans-serif;
+
+
+}
+
+
+
+.texte{
+
+	text-align: center;
+	display:flex;
+	justify-content: center
+}
+
+
+
+
